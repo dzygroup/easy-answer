@@ -26,11 +26,23 @@ public class AnswerBuilder {
         return this;
     }
 
+    /**
+     * 计算过程
+     *
+     * @param computable 计算过程
+     * @return 回答构造器
+     */
     public AnswerBuilder compute(Computable<?> computable) {
         this.computable = computable;
         return this;
     }
 
+    /**
+     * 如果第一个结果返回不为空，则作为新的结果返回。
+     *
+     * @param <T> 返回响应结果
+     * @return 相应结果
+     */
     @SuppressWarnings("unchecked")
     public <T> T doAnswer() {
         ComputeResultPair resultPair = compute0();
@@ -42,6 +54,9 @@ public class AnswerBuilder {
                     if (result != null) return (T) result;
                 }
             }
+        }
+        if (resultPair.getThrowable() != null) {
+            throw new RuntimeException(resultPair.getThrowable());
         }
         return (T) resultPair.getResult();
     }
