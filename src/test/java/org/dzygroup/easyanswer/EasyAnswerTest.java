@@ -64,4 +64,6 @@ public class EasyAnswerTest {
             this.name = name;
         }
     }
+
+
 }
