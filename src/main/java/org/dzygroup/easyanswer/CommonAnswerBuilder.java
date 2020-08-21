@@ -39,7 +39,7 @@ public class CommonAnswerBuilder {
                         throw new RuntimeException("完成后处理器错误", t);
                     }
                 }
-                return null;
+                return result;
             }
         });
     }

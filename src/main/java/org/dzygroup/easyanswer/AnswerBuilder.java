@@ -43,8 +43,7 @@ public class AnswerBuilder {
                 }
             }
         }
-
-        throw new RuntimeException("没有返回结果");
+        return (T) resultPair.getResult();
     }
 
     private ComputeResultPair compute0() {
