@@ -3,7 +3,7 @@ package org.dzygroup.easyanswer;
 /**
  * @author 戴志勇
  */
-public interface AnswerHandler<T> {
+public interface Computable<R> {
 
-    T handle(Object result);
+    R compute();
 }
