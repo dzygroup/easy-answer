@@ -18,7 +18,7 @@ public class AnswerTemplate {
         return FIXED_PROPERTIES.put(name, value);
     }
 
-    public Object answerContent(String name, Object value) {
+    public AnswerContent answerContent() {
         return new AnswerContent(new HashMap<String, Object>(FIXED_PROPERTIES));
     }
 
