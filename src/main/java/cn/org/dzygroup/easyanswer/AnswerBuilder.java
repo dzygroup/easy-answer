@@ -1,4 +1,4 @@
-package org.dzygroup.easyanswer;
+package cn.org.dzygroup.easyanswer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

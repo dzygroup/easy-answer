@@ -1,4 +1,4 @@
-package org.dzygroup.easyanswer.template;
+package cn.org.dzygroup.easyanswer.template;
 
 import java.util.HashMap;
 import java.util.Map;

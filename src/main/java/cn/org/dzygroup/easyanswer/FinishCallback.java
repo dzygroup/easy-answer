@@ -1,4 +1,4 @@
-package org.dzygroup.easyanswer;
+package cn.org.dzygroup.easyanswer;
 
 /**
  * @author 戴志勇

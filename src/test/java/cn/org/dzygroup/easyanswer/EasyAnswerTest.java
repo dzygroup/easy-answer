@@ -1,4 +1,4 @@
-package org.dzygroup.easyanswer;
+package cn.org.dzygroup.easyanswer;
 
 import org.junit.Test;
 
