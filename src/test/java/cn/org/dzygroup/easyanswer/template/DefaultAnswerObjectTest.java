@@ -20,120 +20,120 @@ public class DefaultAnswerObjectTest {
     private final String newKey2 = "newKey2";
     private final String newValue1 = "newValue1";
     private final String newValue2 = "newValue2";
-    private DefaultAnswerObject uncoverAnswer;
-    private DefaultAnswerObject coverAnswer;
+    private DefaultAnswerObject unmodifiableAnswer;
+    private DefaultAnswerObject modifiableAnswer;
 
     @BeforeEach
     public void setUp() throws Exception {
-        uncoverAnswer = new DefaultAnswerObject();
-        coverAnswer = new DefaultAnswerObject(true);
+        unmodifiableAnswer = new DefaultAnswerObject();
+        modifiableAnswer = new DefaultAnswerObject(true);
     }
 
 
     // 不应该覆盖模板属性
     @Test
     void uncoverPut1() {
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.put(oldKey1, newValue1);
-        assertEquals(newValue1, uncoverAnswer.get(oldKey1));
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.put(oldKey1, newValue1);
+        assertEquals(oldValue1, unmodifiableAnswer.get(oldKey1));
     }
 
     @Test
     void uncoverPut2() {
-        uncoverAnswer.put(oldKey1, newValue1);
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        assertEquals(newValue1, uncoverAnswer.get(oldKey1));
+        unmodifiableAnswer.put(oldKey1, newValue1);
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        assertEquals(oldValue1, unmodifiableAnswer.get(oldKey1));
     }
 
     @Test
     void coverPut1() {
-        coverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        coverAnswer.put(oldKey1, newValue1);
-        assertEquals(newValue1, coverAnswer.get(oldKey1));
+        modifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        modifiableAnswer.put(oldKey1, newValue1);
+        assertEquals(newValue1, modifiableAnswer.get(oldKey1));
     }
 
     @Test
     void coverPut2() {
-        coverAnswer.put(oldKey1, newValue1);
-        coverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        assertEquals(newValue1, coverAnswer.get(oldKey1));
+        modifiableAnswer.put(oldKey1, newValue1);
+        modifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        assertEquals(oldValue1, modifiableAnswer.get(oldKey1));
     }
 
     @Test
     void uncoverClear1() {
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.putTemplateProperty(oldKey2, oldValue2);
-        uncoverAnswer.put(newKey1, newValue1);
-        uncoverAnswer.clear();
-        assertEquals(2, uncoverAnswer.getProperties().size());
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.putTemplateProperty(oldKey2, oldValue2);
+        unmodifiableAnswer.put(newKey1, newValue1);
+        unmodifiableAnswer.clear();
+        assertEquals(0, unmodifiableAnswer.getProperties().size());
     }
 
     @Test
     void uncoverClear2() {
-        uncoverAnswer.put(newKey1, newValue1);
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.putTemplateProperty(oldKey2, oldValue2);
-        uncoverAnswer.clear();
-        assertEquals(2, uncoverAnswer.getProperties().size());
+        unmodifiableAnswer.put(newKey1, newValue1);
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.putTemplateProperty(oldKey2, oldValue2);
+        unmodifiableAnswer.clear();
+        assertEquals(0, unmodifiableAnswer.getProperties().size());
     }
 
     @Test
     void coverClear1() {
-        coverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        coverAnswer.putTemplateProperty(oldKey2, oldValue2);
-        coverAnswer.put(newKey1, newValue1);
-        coverAnswer.clear();
-        assertEquals(2, coverAnswer.getProperties().size());
+        modifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        modifiableAnswer.putTemplateProperty(oldKey2, oldValue2);
+        modifiableAnswer.put(newKey1, newValue1);
+        modifiableAnswer.clear();
+        assertEquals(0, modifiableAnswer.getProperties().size());
     }
 
     @Test
     void coverClear2() {
-        coverAnswer.put(newKey1, newValue1);
-        coverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        coverAnswer.putTemplateProperty(oldKey2, oldValue2);
-        coverAnswer.clear();
-        assertEquals(2, coverAnswer.getProperties().size());
+        modifiableAnswer.put(newKey1, newValue1);
+        modifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        modifiableAnswer.putTemplateProperty(oldKey2, oldValue2);
+        modifiableAnswer.clear();
+        assertEquals(0, modifiableAnswer.getProperties().size());
     }
 
     @Test
     void uncoverRemove1() {
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.remove(oldKey1);
-        assertFalse(uncoverAnswer.getProperties().isEmpty());
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.remove(oldKey1);
+        assertFalse(unmodifiableAnswer.getProperties().isEmpty());
 
     }
 
     @Test
     void uncoverRemove2() {
-        uncoverAnswer.put(oldKey1, oldValue1);
-        uncoverAnswer.remove(oldKey1);
-        assertTrue(uncoverAnswer.getProperties().isEmpty());
+        unmodifiableAnswer.put(oldKey1, oldValue1);
+        unmodifiableAnswer.remove(oldKey1);
+        assertTrue(unmodifiableAnswer.getProperties().isEmpty());
     }
 
     @Test
     void uncoverRemove3() {
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.put(oldKey1, oldValue1);
-        uncoverAnswer.remove(oldKey1);
-        assertEquals(1, uncoverAnswer.getProperties().size());
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.put(oldKey1, oldValue1);
+        unmodifiableAnswer.remove(oldKey1);
+        assertEquals(1, unmodifiableAnswer.getProperties().size());
     }
 
     @Test
     void uncoverRemove4() {
-        uncoverAnswer.put(oldKey1, oldValue1);
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.remove(oldKey1);
-        assertEquals(1, uncoverAnswer.getProperties().size());
+        unmodifiableAnswer.put(oldKey1, oldValue1);
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.remove(oldKey1);
+        assertEquals(1, unmodifiableAnswer.getProperties().size());
     }
 
     @Test
     public void uncoverToMap() {
-        uncoverAnswer.putTemplateProperty(oldKey1, oldValue1);
-        uncoverAnswer.putTemplateProperty(oldKey2, oldValue2);
-        uncoverAnswer.put(oldKey1, newValue1);
-        uncoverAnswer.put(oldKey2, newValue2);
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.putTemplateProperty(oldKey2, oldValue2);
+        unmodifiableAnswer.put(oldKey1, newValue1);
+        unmodifiableAnswer.put(oldKey2, newValue2);
 
-        Map<String, Object> map = uncoverAnswer.toMap();
+        Map<String, Object> map = unmodifiableAnswer.getProperties();
         assertEquals(2, map.size());
         assertTrue(map.containsValue(oldValue1));
         assertTrue(map.containsValue(oldValue2));

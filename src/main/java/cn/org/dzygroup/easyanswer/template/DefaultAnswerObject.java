@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * @author 戴志勇
  */
-public class DefaultAnswerObject extends TemplateAnswerObject {
+public class DefaultAnswerObject extends AbstractTemplateAnswerObject {
 
     public DefaultAnswerObject() {
     }
@@ -26,8 +26,5 @@ public class DefaultAnswerObject extends TemplateAnswerObject {
         super(templateProperties, customProperties, coverTemplateProp);
     }
 
-    @Override
-    public Map<String, Object> toMap() {
-        return new MapConverter().convert(this);
-    }
+
 }

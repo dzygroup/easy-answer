@@ -6,4 +6,9 @@ package cn.org.dzygroup.easyanswer.template;
 public class Answer {
 
 
+    public static TemplateAnswerObjectBuilder templateAnswer() {
+        return new TemplateAnswerObjectBuilder();
+    }
+
+
 }

@@ -48,13 +48,39 @@ public abstract class AbstractAnswerObject implements AnswerObject {
         return new HashMap<String, Object>(properties);
     }
 
-    protected Map<String, Object> getInnerProperties() {
-        return properties;
-    }
 
     @Override
     public void putAll(Map<String, Object> properties) {
         if (properties == null) throw new RuntimeException("properties 不能为空");
         this.properties.putAll(properties);
+    }
+
+    @Override
+    public Object put(String name, Computable computable) {
+        if (computable == null) throw new RuntimeException("computable不能为空");
+        return properties.put(name, computable.compute());
+    }
+
+    @Override
+    public Object put(String name, Computable computable, ExceptionHandler exceptionHandler) {
+        if (computable == null) throw new RuntimeException("computable不能为空");
+
+        Object value;
+        try {
+            value = computable.compute();
+        } catch (Throwable t) {
+            if (exceptionHandler != null) {
+                value = exceptionHandler.handle(this, t);
+            } else {
+                throw new RuntimeException(t);
+            }
+        }
+
+        if (value instanceof SkipValue) {
+            return properties.get(name);
+        }
+
+        properties.put(name, value);
+        return value;
     }
 }
