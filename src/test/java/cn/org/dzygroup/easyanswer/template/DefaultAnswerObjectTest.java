@@ -127,7 +127,7 @@ public class DefaultAnswerObjectTest {
     }
 
     @Test
-    public void uncoverToMap() {
+    public void unmodifiableGetProperties() {
         unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
         unmodifiableAnswer.putTemplateProperty(oldKey2, oldValue2);
         unmodifiableAnswer.put(oldKey1, newValue1);
@@ -137,5 +137,27 @@ public class DefaultAnswerObjectTest {
         assertEquals(2, map.size());
         assertTrue(map.containsValue(oldValue1));
         assertTrue(map.containsValue(oldValue2));
+    }
+
+    @Test
+    void putComputable1() {
+        unmodifiableAnswer.putTemplateProperty(oldKey1, oldValue1);
+        unmodifiableAnswer.put(oldKey1, new Computable() {
+            @Override
+            public Object compute() {
+                return newValue1;
+            }
+        });
+
+        assertEquals(oldValue1, unmodifiableAnswer.get(oldKey1));
+
+        modifiableAnswer.put(oldKey1, new Computable() {
+            @Override
+            public Object compute() {
+                return newValue1;
+            }
+        });
+
+        assertEquals(newValue1, modifiableAnswer.get(oldKey1));
     }
 }
