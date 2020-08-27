@@ -15,7 +15,7 @@ public abstract class TemplateAnswerObject extends AbstractAnswerObject {
     /**
      * 覆盖模板属性：true: 覆盖，false: 不覆盖
      */
-    private boolean coverTemplateProp;
+    private boolean cover;
 
 
     /**
@@ -26,10 +26,10 @@ public abstract class TemplateAnswerObject extends AbstractAnswerObject {
 
 
     /**
-     * @param coverTemplateProp 存在相同的模板属性是否覆盖模板属性，false：不覆盖，true：覆盖
+     * @param cover 存在相同的模板属性是否覆盖模板属性，false：不覆盖，true：覆盖
      */
-    public TemplateAnswerObject(boolean coverTemplateProp) {
-        this.coverTemplateProp = coverTemplateProp;
+    public TemplateAnswerObject(boolean cover) {
+        this.cover = cover;
     }
 
 
@@ -53,14 +53,14 @@ public abstract class TemplateAnswerObject extends AbstractAnswerObject {
     /**
      * @param templateProperties 模板属性
      * @param customProperties   自定义属性
-     * @param coverTemplateProp  存在相同的模板属性是否覆盖模板属性，false：不覆盖，true：覆盖
+     * @param cover              存在相同的模板属性是否覆盖模板属性，false：不覆盖，true：覆盖
      */
-    public TemplateAnswerObject(Map<String, Object> templateProperties, Map<String, Object> customProperties, boolean coverTemplateProp) {
+    public TemplateAnswerObject(Map<String, Object> templateProperties, Map<String, Object> customProperties, boolean cover) {
         if (templateProperties == null) throw new RuntimeException("templateProperties 不能为空");
         if (customProperties == null) throw new RuntimeException("customProperties 不能为空");
 
         Map<String, Object> properties;
-        if (coverTemplateProp) {
+        if (cover) {
             properties = new HashMap<String, Object>(templateProperties);
             properties.putAll(customProperties);
         } else {
@@ -70,7 +70,7 @@ public abstract class TemplateAnswerObject extends AbstractAnswerObject {
 
         super.putAll(properties);
 
-        this.coverTemplateProp = coverTemplateProp;
+        this.cover = cover;
     }
 
     /**
@@ -95,40 +95,37 @@ public abstract class TemplateAnswerObject extends AbstractAnswerObject {
         return templateProperties.get(name);
     }
 
-
-    @Override
-    public Object put(String name, Object value) {
-        // 存在相同的模板属性值时覆盖
-        if (coverTemplateProp && templateProperties.containsKey(name)) {
-            putTemplateProperty(name, value);
-        }
-        return super.put(name, value);
-    }
-
-    @Override
-    public Object get(String name) {
-        // 不覆盖
-        if (!coverTemplateProp && templateProperties.containsKey(name)) {
-            return templateProperties.get(name);
-        }
-        return super.get(name);
-    }
-
-    @Override
-    public Object remove(String name) {
-        // 不覆盖
-        if (!coverTemplateProp && templateProperties.containsKey(name)) {
-            return templateProperties.get(name);
-        }
-        return super.remove(name);
-    }
-
     public Object removeTemplateProperty(String name) {
         return templateProperties.remove(name);
     }
 
+    @Override
+    public void clear() {
+        super.clear();
+    }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        Map<String, Object> properties = new HashMap<String, Object>();
+        if (cover) {
+            properties.putAll(templateProperties);
+            properties.putAll(getInnerProperties());
+            return properties;
+        }
+        properties.putAll(getInnerProperties());
+        properties.putAll(templateProperties);
+        return properties;
+    }
 
     public void clearTemplateProperty() {
         templateProperties.clear();
+    }
+
+    public boolean isCover() {
+        return cover;
+    }
+
+    public void setCover(boolean cover) {
+        this.cover = cover;
     }
 }

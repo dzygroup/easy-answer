@@ -1,10 +1,12 @@
 package cn.org.dzygroup.easyanswer;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * @author 戴志勇

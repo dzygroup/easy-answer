@@ -1,6 +1,7 @@
 package cn.org.dzygroup.easyanswer.template;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * @author 戴志勇

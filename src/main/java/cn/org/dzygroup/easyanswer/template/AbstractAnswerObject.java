@@ -48,6 +48,10 @@ public abstract class AbstractAnswerObject implements AnswerObject {
         return new HashMap<String, Object>(properties);
     }
 
+    protected Map<String, Object> getInnerProperties() {
+        return properties;
+    }
+
     @Override
     public void putAll(Map<String, Object> properties) {
         if (properties == null) throw new RuntimeException("properties 不能为空");
