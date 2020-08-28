@@ -13,7 +13,7 @@ class MapInvocationHandlerTest {
 
     @Test
     void proxy() {
-        AnswerObjectBuilder builder = new AnswerObjectBuilder();
+        TemplateAnswerObjectBuilder builder = new TemplateAnswerObjectBuilder();
         builder.templateProperty("t1", "t1");
         MapInvocationHandler handler = new MapInvocationHandler(builder.build());
         Object o = Proxy.newProxyInstance(MapInvocationHandlerTest.class.getClassLoader(), new Class[]{Map.class, AnswerObject.class}, handler);

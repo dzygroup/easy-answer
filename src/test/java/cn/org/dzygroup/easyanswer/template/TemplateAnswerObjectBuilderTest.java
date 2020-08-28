@@ -10,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * @author 戴志勇
  */
-class AnswerObjectBuilderTest {
+class TemplateAnswerObjectBuilderTest {
 
-    private AnswerObjectBuilder builder;
+    private TemplateAnswerObjectBuilder builder;
     private ExceptionHandler exceptionHandler;
 
     @BeforeEach
     void setUp() {
-        builder = new AnswerObjectBuilder();
+        builder = new TemplateAnswerObjectBuilder();
         exceptionHandler = new ExceptionHandler() {
             @Override
             public Object handle(AnswerObject answerObject, Throwable t) {
@@ -31,7 +31,7 @@ class AnswerObjectBuilderTest {
 
     @Test
     void build() {
-        AnswerObjectBuilder builder = new AnswerObjectBuilder();
+        TemplateAnswerObjectBuilder builder = new TemplateAnswerObjectBuilder();
         builder.property("abc", "234")
                 .templateProperty("tm", 5);
 
@@ -60,5 +60,13 @@ class AnswerObjectBuilderTest {
                 });
             }
         });
+    }
+
+    @Test
+    void buildListAnswer() {
+        AnswerObject o = builder.property("name", "1").buildListAnswer();
+
+        System.out.println(JSONArray.toJSONString(o));
+
     }
 }

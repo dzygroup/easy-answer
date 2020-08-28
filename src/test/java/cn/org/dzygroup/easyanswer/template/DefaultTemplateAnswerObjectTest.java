@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author 戴志勇
  */
-public class DefaultAnswerObjectTest {
+public class DefaultTemplateAnswerObjectTest {
 
     private final String oldKey1 = "oldKey1";
     private final String oldKey2 = "oldKey2";
@@ -20,13 +20,13 @@ public class DefaultAnswerObjectTest {
     private final String newKey2 = "newKey2";
     private final String newValue1 = "newValue1";
     private final String newValue2 = "newValue2";
-    private DefaultAnswerObject unmodifiableAnswer;
-    private DefaultAnswerObject modifiableAnswer;
+    private DefaultTemplateAnswerObject unmodifiableAnswer;
+    private DefaultTemplateAnswerObject modifiableAnswer;
 
     @BeforeEach
     public void setUp() {
-        unmodifiableAnswer = new DefaultAnswerObject();
-        modifiableAnswer = new DefaultAnswerObject(true);
+        unmodifiableAnswer = new DefaultTemplateAnswerObject();
+        modifiableAnswer = new DefaultTemplateAnswerObject(true);
     }
 
 

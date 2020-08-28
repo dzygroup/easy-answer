@@ -2,16 +2,16 @@ package cn.org.dzygroup.easyanswer.template;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * @author 戴志勇
  */
-public class MapInvocationHandler implements InvocationHandler {
-
+public class ListInvocationHandler implements InvocationHandler {
 
     private final AnswerObject target;
 
-    public MapInvocationHandler(AnswerObject target) {
+    public ListInvocationHandler(AnswerObject target) {
         this.target = target;
     }
 
@@ -20,6 +20,6 @@ public class MapInvocationHandler implements InvocationHandler {
         if (method.getDeclaringClass().isInstance(target)) {
             return method.invoke(target, args);
         }
-        return method.invoke(target.getProperties(), args);
+        return method.invoke(new ArrayList<Object>(target.getProperties().values()), args);
     }
 }
