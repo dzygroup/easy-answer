@@ -190,8 +190,9 @@ public abstract class AbstractTemplateAnswerObject extends AbstractAnswerObject 
      * 将{@link Computable}执行结果作为新的属性值，如果计算过程发生异常，将会触发异常处理器，异常处理器的结果作为新的值，如果异常处理器返回
      * {@link SkipNext}对象则不会设置新值。
      *
-     * @param name       属性名
-     * @param computable 可计算对象
+     * @param name             属性名
+     * @param computable       可计算对象
+     * @param exceptionHandler 异常处理器
      * @return 旧的值
      */
     @Override
