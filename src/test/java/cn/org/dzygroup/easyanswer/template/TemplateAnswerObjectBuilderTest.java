@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -66,7 +67,9 @@ class TemplateAnswerObjectBuilderTest {
     void buildListAnswer() {
         AnswerObject o = builder.property("name", "1").buildListAnswer();
 
-        System.out.println(JSONArray.toJSONString(o));
-
+        JSONArray j = (JSONArray) JSONArray.toJSON(o);
+        assertEquals(j.size(), 1);
     }
+
+
 }
