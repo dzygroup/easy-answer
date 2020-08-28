@@ -43,9 +43,10 @@ public abstract class AbstractAnswerObject implements AnswerObject {
         properties.clear();
     }
 
+
     @Override
     public Map<String, Object> getProperties() {
-        return properties;
+        return new HashMap<String, Object>(properties);
     }
 
 

@@ -19,6 +19,8 @@ class TemplateAnswerObjectBuilderTest {
     @BeforeEach
     void setUp() {
         builder = new TemplateAnswerObjectBuilder();
+
+
         exceptionHandler = new ExceptionHandler() {
             @Override
             public Object handle(AnswerObject answerObject, Throwable t) {
@@ -71,5 +73,16 @@ class TemplateAnswerObjectBuilderTest {
         assertEquals(j.size(), 1);
     }
 
+    @Test
+    void buildMapAnswer() {
+        AnswerObject o = builder.canModifyTemplateProperty(true)
+                .property("c1", "c1")
+                .templateProperty("t1", "t1")
+                .buildMapAnswer();
 
+        o.put("t1", "t2");
+        o.put("c1", "c2");
+        assertEquals("t2", o.get("t1"));
+        assertEquals("c2", o.get("c1"));
+    }
 }
