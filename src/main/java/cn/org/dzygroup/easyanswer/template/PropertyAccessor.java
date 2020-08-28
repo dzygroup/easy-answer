@@ -43,5 +43,7 @@ public interface PropertyAccessor {
 
     Map<String, Object> getProperties();
 
+//    List<Object> toList();
+
     void putAll(Map<String, Object> properties);
 }

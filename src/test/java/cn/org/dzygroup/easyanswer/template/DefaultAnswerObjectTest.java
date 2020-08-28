@@ -24,7 +24,7 @@ public class DefaultAnswerObjectTest {
     private DefaultAnswerObject modifiableAnswer;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         unmodifiableAnswer = new DefaultAnswerObject();
         modifiableAnswer = new DefaultAnswerObject(true);
     }
@@ -159,5 +159,19 @@ public class DefaultAnswerObjectTest {
         });
 
         assertEquals(newValue1, modifiableAnswer.get(oldKey1));
+    }
+
+    @Test
+    void getProperties1() {
+        unmodifiableAnswer.putTemplateProperty("t1", "t1");
+        unmodifiableAnswer.put("t2", "t2");
+        assertEquals(2, unmodifiableAnswer.getProperties().size());
+    }
+
+    @Test
+    void getProperties2() {
+        modifiableAnswer.put("t1", "t1");
+        modifiableAnswer.putTemplateProperty("t2", "t2");
+        assertEquals(2, modifiableAnswer.getProperties().size());
     }
 }

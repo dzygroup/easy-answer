@@ -14,6 +14,6 @@ class AnswerTest {
 
     @Test
     void templateAnswer() {
-        Answer.templateAnswer().answer();
+
     }
 }

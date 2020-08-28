@@ -62,6 +62,7 @@ public abstract class AbstractTemplateAnswerObject extends AbstractAnswerObject 
         this.templateProperties.putAll(templateProperties);
         this.modifyTemplateProperty = modifyTemplateProperty;
 
+        super.putAll(templateProperties);
         putAll(properties);
     }
 
