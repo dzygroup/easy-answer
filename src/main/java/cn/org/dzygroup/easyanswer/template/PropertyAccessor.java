@@ -18,6 +18,7 @@ public interface PropertyAccessor {
      */
     Object put(String name, Object value);
 
+
     /**
      * 返回属性值
      *
@@ -41,9 +42,19 @@ public interface PropertyAccessor {
      */
     void clear();
 
+
+    /**
+     * 获取全部的属性
+     *
+     * @return 返回全部属性值
+     */
     Map<String, Object> getProperties();
 
-//    List<Object> toList();
 
+    /**
+     * 添加一个属性值集合
+     *
+     * @param properties 属性值集合
+     */
     void putAll(Map<String, Object> properties);
 }

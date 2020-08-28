@@ -77,7 +77,7 @@ public abstract class AbstractAnswerObject implements AnswerObject {
             }
         }
 
-        if (value instanceof SkipValue) {
+        if (value instanceof SkipNext) {
             return properties.get(name);
         }
 

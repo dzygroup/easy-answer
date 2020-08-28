@@ -27,7 +27,7 @@ class TemplateAnswerObjectBuilderTest {
                 answerObject.put("errorCode", "-1");
                 answerObject.put("message", "失败");
                 answerObject.put("status", "failure");
-                return new SkipValue(); // 不做任何处理
+                return new SkipNext(); // 不做任何处理
             }
         };
     }
