@@ -54,19 +54,20 @@ class MarkInterfaceInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if (otherHandler != null) {
-            return otherHandler.invoke(proxy, method, args);
-        }
-
         if (method.getDeclaringClass().isInstance(target)) {
             return method.invoke(target, args);
         }
 
-        if (method.getDeclaringClass() == List.class) {
+        if (otherHandler != null) {
+            return otherHandler.invoke(proxy, method, args);
+        }
+
+
+        if (buildList && method.getDeclaringClass() == List.class) {
             return method.invoke(new ArrayList<Object>(target.getProperties().values()), args);
         }
 
-        if (method.getDeclaringClass() == Map.class) {
+        if (buildMap && method.getDeclaringClass() == Map.class) {
             return method.invoke(target.getProperties(), args);
         }
 
