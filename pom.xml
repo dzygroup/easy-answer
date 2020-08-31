@@ -6,7 +6,7 @@
 
     <groupId>com.github.dzygroup</groupId>
     <artifactId>easy-answer</artifactId>
-    <version>1.0.0-MILESTONE</version>
+    <version>1.0.0-RELEASE</version>
     <build>
         <plugins>
             <plugin>
