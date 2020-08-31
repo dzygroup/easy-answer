@@ -1,5 +1,6 @@
 package cn.org.dzygroup.easyanswer.template;
 
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,8 @@ public final class TemplateAnswerObjectBuilder {
      * 标记接口
      */
     private Class<?>[] interfaces;
+
+    private InvocationHandler invocationHandler;
 
 
     /**
@@ -112,6 +115,11 @@ public final class TemplateAnswerObjectBuilder {
      * @return 构建器
      */
     public TemplateAnswerObjectBuilder mark(Class<?>... interfaces) {
+        return mark(interfaces, null);
+    }
+
+
+    public TemplateAnswerObjectBuilder mark(Class<?>[] interfaces, InvocationHandler invocationHandler) {
         if (interfaces == null) throw new NullPointerException("标记接口不能为空");
         for (Class<?> clazz : interfaces) {
             if (!clazz.isInterface()) {
@@ -119,6 +127,7 @@ public final class TemplateAnswerObjectBuilder {
             }
         }
         this.interfaces = interfaces;
+        this.invocationHandler = invocationHandler;
         return this;
     }
 
@@ -129,7 +138,7 @@ public final class TemplateAnswerObjectBuilder {
      * @return 回答对象
      */
     public AnswerObject build() {
-        return build0(interfaces);
+        return build0(new MarkInterfaceInvocationHandler().setBuildList(true), interfaces);
     }
 
 
@@ -139,7 +148,7 @@ public final class TemplateAnswerObjectBuilder {
      * @return {@link AnswerObject}对象
      */
     public AnswerObject buildMapAnswer() {
-        return build0(Map.class);
+        return build0(new MarkInterfaceInvocationHandler().setBuildMap(true), Map.class);
     }
 
 
@@ -149,11 +158,11 @@ public final class TemplateAnswerObjectBuilder {
      * @return {@link AnswerObject}对象
      */
     public AnswerObject buildListAnswer() {
-        return build0(List.class);
+        return build0(new MarkInterfaceInvocationHandler().setBuildList(true), List.class);
     }
 
 
-    private AnswerObject build0(Class<?>... interfaces) {
+    private AnswerObject build0(MarkInterfaceInvocationHandler invocationHandler, Class<?>... interfaces) {
         AnswerObject result = new DefaultTemplateAnswerObject(templateProperties, properties, canModifyTemplateProperty);
         if (interfaces != null) {
             Class<?>[] classes = new Class<?>[interfaces.length + 1];
@@ -161,7 +170,7 @@ public final class TemplateAnswerObjectBuilder {
             classes[interfaces.length] = AnswerObject.class;
             result = (AnswerObject) Proxy.newProxyInstance(getClass().getClassLoader(),
                     classes,
-                    new MarkInterfaceInvocationHandler(result));
+                    invocationHandler.setOtherHandler(this.invocationHandler).setTarget(result));
         }
         return result;
     }
