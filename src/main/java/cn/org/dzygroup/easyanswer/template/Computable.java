@@ -10,8 +10,8 @@ public interface Computable {
     /**
      * 实现计算过程
      *
-     * @param value 旧值
+     * @param oldValue 旧值
      * @return 返回新值
      */
-    Object compute(Object value);
+    Object compute(Object oldValue);
 }
