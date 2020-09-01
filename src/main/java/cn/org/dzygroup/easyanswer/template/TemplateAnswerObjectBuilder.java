@@ -56,7 +56,7 @@ public final class TemplateAnswerObjectBuilder {
      * @param handler 处理器
      * @return {@link TemplateAnswerObjectBuilder}
      */
-    public TemplateAnswerObjectBuilder registryExceptionHandler(ComputableExceptionHandler handler) {
+    public TemplateAnswerObjectBuilder exceptionHandler(ComputableExceptionHandler handler) {
         registry.registry(ComputableExceptionHandlerRegistry.GLOBAL, handler);
         return this;
     }
