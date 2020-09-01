@@ -33,6 +33,23 @@ class DefaultTemplateAnswerObject extends AbstractTemplateAnswerObject {
 
     @Override
     public AnswerObject set(String name, Computable computable, ComputableExceptionHandler computableExceptionHandler) {
-        return super.set(name, computable, computableExceptionHandler);
+        return super.set(name, computable, computableExceptionHandler == null ? registry.getExceptionHandler(ComputableExceptionHandlerRegistry.GLOBAL) : computableExceptionHandler);
+    }
+
+
+    @Override
+    protected Object handleComputableException(String name, ComputableExceptionHandler computableExceptionHandler, Throwable t) {
+        Object value;
+        if (computableExceptionHandler != null) {
+            value = computableExceptionHandler.handle(this, name, t);
+        } else {
+            ComputableExceptionHandler exceptionHandler = registry.getExceptionHandler(ComputableExceptionHandlerRegistry.GLOBAL);
+            if (exceptionHandler == null) {
+                throw new RuntimeException("没有设置全局处理器或者局部处理器", t);
+            } else {
+                value = exceptionHandler.handle(this, name, t);
+            }
+        }
+        return value;
     }
 }

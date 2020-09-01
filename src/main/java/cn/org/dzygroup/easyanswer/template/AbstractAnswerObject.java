@@ -61,15 +61,13 @@ public abstract class AbstractAnswerObject implements AnswerObject {
         try {
             value = computable.compute(get(name));
         } catch (Throwable t) {
-            if (computableExceptionHandler != null) {
-                value = computableExceptionHandler.handle(this, name, t);
-            } else {
-                throw new RuntimeException("属性值计算错误", t);
-            }
+            value = handleComputableException(name, computableExceptionHandler, t);
         }
         propertyAccessor.put(name, value);
         return this;
     }
+
+    protected abstract Object handleComputableException(String name, ComputableExceptionHandler computableExceptionHandler, Throwable t);
 
     @Override
     public AnswerObject set(Map<String, Object> properties) {
