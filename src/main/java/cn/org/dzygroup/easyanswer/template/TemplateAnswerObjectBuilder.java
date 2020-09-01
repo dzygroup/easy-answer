@@ -135,6 +135,13 @@ public final class TemplateAnswerObjectBuilder {
     }
 
 
+    /**
+     * 标记接口
+     *
+     * @param interfaces        接口数组
+     * @param invocationHandler 接口调用处理器
+     * @return {@link TemplateAnswerObjectBuilder}
+     */
     public TemplateAnswerObjectBuilder mark(Class<?>[] interfaces, InvocationHandler invocationHandler) {
         if (interfaces == null) throw new NullPointerException("标记接口不能为空");
         for (Class<?> clazz : interfaces) {
