@@ -14,6 +14,9 @@ import java.util.Map;
  */
 public final class TemplateAnswerObjectBuilder {
 
+
+    private final ComputableExceptionHandlerRegistry registry;
+
     /**
      * 模板属性
      */
@@ -43,7 +46,9 @@ public final class TemplateAnswerObjectBuilder {
     public TemplateAnswerObjectBuilder() {
         templateProperties = new HashMap<String, Object>();
         properties = new HashMap<String, Object>();
+        registry = new DefaultComputableExceptionHandlerRegistry();
     }
+
 
 
     /**
@@ -163,7 +168,7 @@ public final class TemplateAnswerObjectBuilder {
 
 
     private AnswerObject build0(MarkInterfaceInvocationHandler invocationHandler, Class<?>... interfaces) {
-        AnswerObject result = new DefaultTemplateAnswerObject(templateProperties, properties, canModifyTemplateProperty);
+        AnswerObject result = new DefaultTemplateAnswerObject(registry, templateProperties, properties, canModifyTemplateProperty);
         if (interfaces != null) {
             Class<?>[] classes = new Class<?>[interfaces.length + 1];
             System.arraycopy(interfaces, 0, classes, 0, interfaces.length);
