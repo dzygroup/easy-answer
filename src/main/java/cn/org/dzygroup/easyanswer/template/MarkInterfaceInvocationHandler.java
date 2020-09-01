@@ -62,7 +62,6 @@ class MarkInterfaceInvocationHandler implements InvocationHandler {
             return otherHandler.invoke(proxy, method, args);
         }
 
-
         if (buildList && method.getDeclaringClass() == List.class) {
             return method.invoke(new ArrayList<Object>(target.getProperties().values()), args);
         }
@@ -71,7 +70,6 @@ class MarkInterfaceInvocationHandler implements InvocationHandler {
             return method.invoke(target.getProperties(), args);
         }
 
-//        return new NoValue("没有实现接口" + method.getDeclaringClass());
         throw new InterfaceNotImplementException("没有实现接口：" + method.getDeclaringClass());
     }
 }

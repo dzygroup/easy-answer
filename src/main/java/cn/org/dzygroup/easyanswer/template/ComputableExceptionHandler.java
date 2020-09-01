@@ -3,7 +3,7 @@ package cn.org.dzygroup.easyanswer.template;
 /**
  * @author 戴志勇
  */
-public interface ExceptionHandler {
+public interface ComputableExceptionHandler {
 
     /**
      * 异常处理器
@@ -12,5 +12,5 @@ public interface ExceptionHandler {
      * @param t            发生的异常
      * @return 结果
      */
-    Object handle(AnswerObject answerObject, Throwable t);
+    Object handle(AnswerObject answerObject, String name, Throwable t);
 }

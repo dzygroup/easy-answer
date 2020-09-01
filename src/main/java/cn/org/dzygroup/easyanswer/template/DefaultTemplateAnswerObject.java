@@ -10,21 +10,15 @@ class DefaultTemplateAnswerObject extends AbstractTemplateAnswerObject {
     public DefaultTemplateAnswerObject() {
     }
 
-    public DefaultTemplateAnswerObject(boolean coverTemplateProp) {
-        super(coverTemplateProp);
+    public DefaultTemplateAnswerObject(boolean modifiable) {
+        super(modifiable);
     }
 
-    public DefaultTemplateAnswerObject(Map<String, Object> templateProperties) {
-        super(templateProperties);
+    public DefaultTemplateAnswerObject(Map<String, Object> templateProperties, boolean modifiable) {
+        super(templateProperties, modifiable);
     }
 
-    public DefaultTemplateAnswerObject(Map<String, Object> templateProperties, Map<String, Object> customProperties) {
-        super(templateProperties, customProperties);
+    public DefaultTemplateAnswerObject(Map<String, Object> templateProperties, Map<String, Object> properties, boolean modifiable) {
+        super(templateProperties, properties, modifiable);
     }
-
-    public DefaultTemplateAnswerObject(Map<String, Object> templateProperties, Map<String, Object> customProperties, boolean coverTemplateProp) {
-        super(templateProperties, customProperties, coverTemplateProp);
-    }
-
-
 }
