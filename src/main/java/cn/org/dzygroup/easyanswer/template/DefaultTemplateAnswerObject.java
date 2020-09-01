@@ -32,12 +32,6 @@ class DefaultTemplateAnswerObject extends AbstractTemplateAnswerObject {
 
 
     @Override
-    public AnswerObject set(String name, Computable computable, ComputableExceptionHandler computableExceptionHandler) {
-        return super.set(name, computable, computableExceptionHandler == null ? registry.getExceptionHandler(ComputableExceptionHandlerRegistry.GLOBAL) : computableExceptionHandler);
-    }
-
-
-    @Override
     protected Object handleComputableException(String name, ComputableExceptionHandler computableExceptionHandler, Throwable t) {
         Object value;
         if (computableExceptionHandler != null) {
