@@ -9,6 +9,8 @@ import java.util.Map;
  */
 public interface AnswerObject {
 
+    AnswerObject clear();
+
     AnswerObject set(String name, Object value);
 
     AnswerObject set(String name, Computable computable);
@@ -26,4 +28,5 @@ public interface AnswerObject {
     <R> R removeAndGet(String name);
 
     Map<String, Object> removeAndGet(String... names);
+
 }

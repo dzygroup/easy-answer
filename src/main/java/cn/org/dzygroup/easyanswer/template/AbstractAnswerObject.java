@@ -37,6 +37,12 @@ public abstract class AbstractAnswerObject implements AnswerObject {
 
 
     @Override
+    public AnswerObject clear() {
+        propertyAccessor.clear();
+        return this;
+    }
+
+    @Override
     public AnswerObject set(String name, Object value) {
         propertyAccessor.put(name, value);
         return this;
