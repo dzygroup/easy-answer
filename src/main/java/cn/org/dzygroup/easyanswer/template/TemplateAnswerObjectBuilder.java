@@ -71,6 +71,7 @@ public final class TemplateAnswerObjectBuilder {
      */
     public TemplateAnswerObjectBuilder templateProperty(String name, Object value) {
         templateProperties.put(name, value);
+        properties.put(name, value);
         return this;
     }
 
@@ -83,6 +84,7 @@ public final class TemplateAnswerObjectBuilder {
      */
     public TemplateAnswerObjectBuilder templateProperty(Map<String, Object> templateProperties) {
         this.templateProperties.putAll(templateProperties);
+        properties.putAll(templateProperties);
         return this;
     }
 

@@ -9,7 +9,6 @@ import java.util.Map;
  */
 public interface AnswerObject {
 
-    AnswerObject clear();
 
     AnswerObject set(String name, Object value);
 
@@ -29,4 +28,5 @@ public interface AnswerObject {
 
     Map<String, Object> removeAndGet(String... names);
 
+    AnswerObject removeAllProperties();
 }

@@ -37,7 +37,7 @@ public abstract class AbstractAnswerObject implements AnswerObject {
 
 
     @Override
-    public AnswerObject clear() {
+    public AnswerObject removeAllProperties() {
         propertyAccessor.clear();
         return this;
     }
