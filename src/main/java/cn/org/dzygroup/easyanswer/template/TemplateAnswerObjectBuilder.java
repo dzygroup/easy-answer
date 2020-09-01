@@ -50,6 +50,17 @@ public final class TemplateAnswerObjectBuilder {
     }
 
 
+    /**
+     * 注册全局处理器
+     *
+     * @param handler 处理器
+     * @return {@link TemplateAnswerObjectBuilder}
+     */
+    public TemplateAnswerObjectBuilder registryExceptionHandler(ComputableExceptionHandler handler) {
+        registry.registry(ComputableExceptionHandlerRegistry.GLOBAL, handler);
+        return this;
+    }
+
 
     /**
      * 添加一个模板属性
