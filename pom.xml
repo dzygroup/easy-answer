@@ -9,7 +9,7 @@
     <version>1.0.0-RELEASE</version>
     <name>easy-answer</name>
     <description>
-        An easy answer tool.
+        An easy api answer template tool.
     </description>
     <url>https://github.com/dzygroup/easy-answer</url>
     <build>
