@@ -54,4 +54,29 @@ class TemplateAnswerObjectBuilderTest {
         assertEquals(jo.size(), ao.getProperties().size());
         assertEquals(aao.size(), ao.getProperties().values().size());
     }
+
+    @Test
+    void returnApi() {
+        builder.templateProperty("errorCode", 0);
+        builder.templateProperty("message", "success");
+        builder.templateProperty("name", "Jim");
+        builder.templateProperty("age", 12);
+        builder.exceptionHandler(new ComputableExceptionHandler() {
+            @Override
+            public Object handle(AnswerObject answerObject, String name, Throwable t) {
+                answerObject.removeAllProperties();
+                answerObject.set("errorCode", -1);
+                answerObject.set("message", "failure");
+                return answerObject.get(name);
+            }
+        });
+        AnswerObject ao = builder.buildMapAnswer();
+        ao.set("data", new Computable() {
+            @Override
+            public Object compute(Object oldValue) {
+                throw new RuntimeException();
+            }
+        });
+        System.out.println(JSONObject.toJSONString(ao));
+    }
 }

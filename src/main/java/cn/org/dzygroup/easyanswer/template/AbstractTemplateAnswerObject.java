@@ -26,14 +26,29 @@ public abstract class AbstractTemplateAnswerObject extends AbstractAnswerObject 
     }
 
 
+    /**
+     * 模板回答对象
+     *
+     * @param modifiable 能否修改模板属性值
+     */
     public AbstractTemplateAnswerObject(boolean modifiable) {
         this(new HashMap<String, Object>(), modifiable);
     }
 
+    /**
+     * @param templateProperties 模板属性
+     * @param modifiable         可否修改模板属性，true可以修改，false不可以修改
+     */
     public AbstractTemplateAnswerObject(Map<String, Object> templateProperties, boolean modifiable) {
         this(templateProperties, new HashMap<String, Object>(), modifiable);
     }
 
+
+    /**
+     * @param templateProperties 模板属性键值对
+     * @param properties         普通属性键值对，可以使得废模板属性有通用的默认值
+     * @param modifiable         可否修改模板属性，true可以修改，false不可以修改
+     */
     public AbstractTemplateAnswerObject(Map<String, Object> templateProperties, Map<String, Object> properties, boolean modifiable) {
         super(properties);
         this.templateProperties = templateProperties;
@@ -74,11 +89,6 @@ public abstract class AbstractTemplateAnswerObject extends AbstractAnswerObject 
     }
 
 
-
-
-
-
-
     /**
      * 是否在模板属性中
      *
@@ -88,6 +98,7 @@ public abstract class AbstractTemplateAnswerObject extends AbstractAnswerObject 
     protected boolean containsTemplateProperty(String name) {
         return templateProperties.containsKey(name);
     }
+
 
     /**
      * 是否可以修改指定属性

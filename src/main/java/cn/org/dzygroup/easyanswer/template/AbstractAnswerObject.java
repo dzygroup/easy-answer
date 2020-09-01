@@ -67,6 +67,14 @@ public abstract class AbstractAnswerObject implements AnswerObject {
         return this;
     }
 
+    /**
+     * 子类实现异常处理
+     *
+     * @param name                       设置的属性名
+     * @param computableExceptionHandler 异常处理器
+     * @param t                          异常
+     * @return 属性值
+     */
     protected abstract Object handleComputableException(String name, ComputableExceptionHandler computableExceptionHandler, Throwable t);
 
     @Override

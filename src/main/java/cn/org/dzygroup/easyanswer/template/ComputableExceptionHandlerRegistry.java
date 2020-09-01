@@ -23,10 +23,24 @@ public abstract class ComputableExceptionHandlerRegistry {
         });
     }
 
+    /**
+     * 获取异常处理器
+     *
+     * @param name 异常处理器名
+     * @return 异常处理器
+     */
     public ComputableExceptionHandler getExceptionHandler(String name) {
         return handlers.get(name);
     }
 
+
+    /**
+     * 注册异常处理器
+     *
+     * @param name    异常处理器名
+     * @param handler 异常处理器
+     * @return 异常处理器
+     */
     public ComputableExceptionHandlerRegistry registry(String name, ComputableExceptionHandler handler) {
         handlers.put(name, handler);
         return this;

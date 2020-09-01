@@ -201,6 +201,12 @@ public final class TemplateAnswerObjectBuilder {
     }
 
 
+    /**
+     * 移除属性
+     *
+     * @param names 属性名数组
+     * @return {@link TemplateAnswerObjectBuilder}
+     */
     public TemplateAnswerObjectBuilder remove(String... names) {
         if (names != null) {
             for (String name : names) {
