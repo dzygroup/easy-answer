@@ -15,7 +15,7 @@
 #### 使用说明
 
 ```java
-import cn.org.dzygroup.easyanswer.template.AnswerObject;import cn.org.dzygroup.easyanswer.template.ComputableExceptionHandler;import cn.org.dzygroup.easyanswer.template.TemplateAnswerObjectBuilder;
+import AnswerObject;import ComputableExceptionHandler;import TemplateAnswerObjectBuilder;
 
 public class Test {
 

@@ -1,4 +1,4 @@
-package cn.org.dzygroup.easyanswer.template;
+package com.github.dzygroup.easyanswer.template;
 
 /**
  * @author 戴志勇
@@ -20,7 +20,4 @@ public class InterfaceNotImplementException extends RuntimeException {
         super(cause);
     }
 
-    public InterfaceNotImplementException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

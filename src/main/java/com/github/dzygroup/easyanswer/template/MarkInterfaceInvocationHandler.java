@@ -1,4 +1,4 @@
-package cn.org.dzygroup.easyanswer.template;
+package com.github.dzygroup.easyanswer.template;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package cn.org.dzygroup.easyanswer.template;
+package com.github.dzygroup.easyanswer.template;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
