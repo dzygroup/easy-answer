@@ -200,4 +200,14 @@ public final class TemplateAnswerObjectBuilder {
         return result;
     }
 
+
+    public TemplateAnswerObjectBuilder remove(String... names) {
+        if (names != null) {
+            for (String name : names) {
+                templateProperties.remove(name);
+                properties.remove(name);
+            }
+        }
+        return this;
+    }
 }

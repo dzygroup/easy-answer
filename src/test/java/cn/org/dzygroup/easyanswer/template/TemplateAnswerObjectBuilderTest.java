@@ -1,5 +1,6 @@
 package cn.org.dzygroup.easyanswer.template;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,24 @@ class TemplateAnswerObjectBuilderTest {
     void buildMap() {
         AnswerObject ao = builder.buildMapAnswer();
         JSONObject jo = (JSONObject) JSONObject.toJSON(builder.buildMapAnswer());
+        JSONArray aao = (JSONArray) JSONArray.toJSON(builder.buildListAnswer());
         assertEquals(jo.size(), ao.getProperties().size());
+        assertEquals(aao.size(), ao.getProperties().values().size());
 
         System.out.println(JSONObject.toJSONString(builder.buildMapAnswer()));
+    }
+
+
+    @Test
+    void remove() {
+        AnswerObject ao = builder.buildMapAnswer();
+        ao.remove("p1", "p2", "t2");
+        JSONObject jo = (JSONObject) JSONObject.toJSON(ao);
+        assertEquals(ao.getProperties().size(), jo.size());
+    }
+
+    @Test
+    void removeTemplateProperty() {
+        AnswerObject ao = builder.buildMapAnswer();
     }
 }
