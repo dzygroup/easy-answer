@@ -46,6 +46,12 @@ class TemplateAnswerObjectBuilderTest {
 
     @Test
     void removeTemplateProperty() {
+        builder.remove("p1");
+        builder.remove("t1");
         AnswerObject ao = builder.buildMapAnswer();
+        JSONObject jo = (JSONObject) JSONObject.toJSON(builder.buildMapAnswer());
+        JSONArray aao = (JSONArray) JSONArray.toJSON(builder.buildListAnswer());
+        assertEquals(jo.size(), ao.getProperties().size());
+        assertEquals(aao.size(), ao.getProperties().values().size());
     }
 }
